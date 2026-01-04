@@ -1,0 +1,21 @@
+# datasets/ap10k_yolo/data.yaml
+
+# 1. 데이터셋 경로 설정 (절대 경로 또는 실행 위치 기준 상대 경로)
+path: /home/yang/PROJECT/model_finetuning/datasets
+train: ap10k_yolo/images/train
+val: ap10k_yolo/images/val
+test: ap10k_yolo/images/test  # 선택 사항
+
+# 2. 클래스 정보 (이전 스크립트의 TARGET_CATEGORIES와 일치해야 함)
+names:
+  0: dog
+  1: cat
+
+# 3. 키포인트 설정
+# [키포인트 개수, 차원] -> AP-10K는 17개 지점이며 (x, y, visibility) 3차원을 사용함
+kpt_shape: [17, 3]
+
+# 4. 좌우 반전(Horizontal Flip) 증강 매핑
+# 좌우 반전 시 대응되는 관절 인덱스를 바꿔주어야 모델이 혼동하지 않습니다.
+# AP-10K 17개 표준: [눈, 귀, 어깨, 팔꿈치, 손목, 골반, 무릎, 발목]의 좌우를 스왑
+flip_idx: [1, 0, 2, 4, 3, 6, 5, 8, 7, 10, 9, 12, 11, 14, 13, 16, 15]
